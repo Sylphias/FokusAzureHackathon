@@ -57,7 +57,7 @@ class Screenshotter:
     def stop(self):
         self.run = False
     def run_script(self):
-        im = ImageGrab.grab(bbox=(0, 0, 1440, 900))  # X1,Y1,X2,Y2
+        im = ImageGrab.grab(bbox=(0, 0, 1440, 500))  # X1,Y1,X2,Y2
         im.save("curr_screen.png")
         username = getpass.getuser()
         uploadToBlob('sscontainer', 'curr_screen.png', blobname=username)
@@ -75,7 +75,8 @@ class Screenshotter:
 
 # if __name__ == '__main__':
 while(True):
-    im = ImageGrab.grab(bbox=(0, 0, 1440, 400),childprocess= True,backend='mac_screencapture')  # X1,Y1,X2,Y2
+    time.sleep(5)
+    im = ImageGrab.grab(bbox=(0, 0, 1440, 900),childprocess= True,backend='mac_screencapture')  # X1,Y1,X2,Y2
     im.save("curr_screen.png")
     username = getpass.getuser()
     uploadToBlob('sscontainer', 'curr_screen.png', blobname=username)
@@ -90,7 +91,6 @@ while(True):
     current_data = getJustText(textJson)
     model_data = getJustText(model.read())
     ddist.similarity_score(model_data, current_data)
-    time.sleep(5)
 
 
 
